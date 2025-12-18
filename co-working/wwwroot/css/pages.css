@@ -797,7 +797,7 @@
 .footer {
     background: #000;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 60px 40px 30px;
+    padding: 20px 40px;
 }
 
 .footer-container {
@@ -806,8 +806,6 @@
 }
 
 .footer-bottom {
-    padding-top: 30px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
     text-align: center;
 }
 
