@@ -1,0 +1,261 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe - Brew & Work</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/styles.css">
+    <link rel="stylesheet" href="~/css/pages.css">
+</head>
+<body class="cafe-body">
+    <header class="header header-solid">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <span class="logo-icon">&#9827;</span>
+                <span class="logo-text">Brew & Work</span>
+            </a>
+            <nav class="nav">
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a asp-controller="Pages" asp-action="Index" class="nav-link active">Home</a></li>
+                    <li><a asp-controller="Pages" asp-action="Cafe" class="nav-link">Cafe</a></li>
+                    <li><a asp-controller="Pages" asp-action="Coworking" class="nav-link">Co-Working</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero hero-cafe">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">Our Cafe</h1>
+                <p class="hero-subtitle">Where every cup tells a story</p>
+            </div>
+        </section>
+
+        <section class="section section-light">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Our Menu</h2>
+                    <p class="section-subtitle">Handcrafted with love and the finest ingredients</p>
+                </div>
+
+                <div class="menu-grid">
+                    <div class="menu-category glass-card">
+                        <div class="menu-icon">&#9749;</div>
+                        <h3>Hot Beverages</h3>
+                        <ul class="menu-items">
+                            <li><span>Espresso</span><span>₹199</span></li>
+                            <li><span>Americano</span><span>₹229</span></li>
+                            <li><span>Cappuccino</span><span>₹259</span></li>
+                            <li><span>Latte</span><span>₹289</span></li>
+                            <li><span>Mocha</span><span>₹319</span></li>
+                            <li><span>Hot Chocolate</span><span>₹259</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="menu-category glass-card">
+                        <div class="menu-icon">&#127861;</div>
+                        <h3>Cold Drinks</h3>
+                        <ul class="menu-items">
+                            <li><span>Iced Coffee</span><span>₹259</span></li>
+                            <li><span>Cold Brew</span><span>₹289</span></li>
+                            <li><span>Iced Latte</span><span>₹319</span></li>
+                            <li><span>Frappe</span><span>₹349</span></li>
+                            <li><span>Smoothies</span><span>₹379</span></li>
+                            <li><span>Fresh Juice</span><span>₹319</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="menu-category glass-card">
+                        <div class="menu-icon">&#127856;</div>
+                        <h3>Pastries & Snacks</h3>
+                        <ul class="menu-items">
+                            <li><span>Croissant</span><span>₹199</span></li>
+                            <li><span>Muffins</span><span>₹169</span></li>
+                            <li><span>Banana Bread</span><span>₹229</span></li>
+                            <li><span>Cheesecake</span><span>₹319</span></li>
+                            <li><span>Cookies</span><span>₹149</span></li>
+                            <li><span>Avocado Toast</span><span>₹449</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-cafe-themed">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Amenities</h2>
+                    <p class="section-subtitle">Everything you need for the perfect cafe experience</p>
+                </div>
+
+                <div class="amenities-grid">
+                    <div class="amenity-card">
+                        <div class="amenity-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M8.111 16.404a5.5 5.5 0 0 1 7.778 0M12 20h.01M3 8l1.5 1.5L6 8l1.5 1.5L9 8l1.5 1.5L12 8l1.5 1.5L15 8l1.5 1.5L18 8l1.5 1.5L21 8v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z" />
+                            </svg>
+                        </div>
+                        <h3>Free WiFi</h3>
+                        <p>High-speed internet for browsing and light work</p>
+                    </div>
+
+                    <div class="amenity-card">
+                        <div class="amenity-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                <line x1="3" y1="9" x2="21" y2="9" />
+                                <line x1="9" y1="21" x2="9" y2="9" />
+                            </svg>
+                        </div>
+                        <h3>Cozy Seating</h3>
+                        <p>Comfortable sofas, armchairs, and window seats</p>
+                    </div>
+
+                    <div class="amenity-card">
+                        <div class="amenity-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                            </svg>
+                        </div>
+                        <h3>Natural Light</h3>
+                        <p>Large windows with beautiful city views</p>
+                    </div>
+
+                    <div class="amenity-card">
+                        <div class="amenity-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 18V5l12-2v13" />
+                                <circle cx="6" cy="18" r="3" />
+                                <circle cx="18" cy="16" r="3" />
+                            </svg>
+                        </div>
+                        <h3>Curated Music</h3>
+                        <p>Relaxing ambient playlists for the perfect vibe</p>
+                    </div>
+
+                    <div class="amenity-card">
+                        <div class="amenity-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                            </svg>
+                        </div>
+                        <h3>Book Corner</h3>
+                        <p>A selection of books for reading enthusiasts</p>
+                    </div>
+
+                    <div class="amenity-card">
+                        <div class="amenity-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="7" width="20" height="15" rx="2" ry="2" />
+                                <polyline points="17 2 12 7 7 2" />
+                            </svg>
+                        </div>
+                        <h3>Pet Friendly</h3>
+                        <p>Your furry friends are welcome on our patio</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-light">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Opening Hours</h2>
+                </div>
+
+                <div class="hours-card glass-card">
+                    <div class="hours-row">
+                        <span>Monday - Friday</span>
+                        <span>7:00 AM - 8:00 PM</span>
+                    </div>
+                    <div class="hours-row">
+                        <span>Saturday</span>
+                        <span>8:00 AM - 9:00 PM</span>
+                    </div>
+                    <div class="hours-row">
+                        <span>Sunday</span>
+                        <span>9:00 AM - 6:00 PM</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="contact">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="/" class="footer-logo">
+                        <span class="logo-icon">&#9827;</span>
+                        <span class="logo-text">Brew & Work</span>
+                    </a>
+                    <p class="footer-tagline">Where coffee meets creativity</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/cafe.html">Cafe</a></li>
+                        <li><a href="/coworking.html">Co-Working</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p>123 Creative Avenue</p>
+                    <p>contact@hungydad.in</p>
+                    <p>(+91)  123-4567</p>
+                </div>
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Twitter">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                <rect x="2" y="9" width="4" height="12" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Brew & Work. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/js/main.js"></script>
+</body>
+</html>
