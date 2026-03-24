@@ -238,6 +238,258 @@
     flex-shrink: 0;
 }
 
+/* ── Co-Working Page Styles ── */
+.cw-intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.cw-intro-left p {
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.55;
+    color: #1a1a2e;
+}
+
+.cw-intro-right p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #5a5a7a;
+}
+
+.cw-amenities-booking {
+    background: #f7f5f0 !important;
+}
+
+.cw-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.cw-block-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 0.6rem;
+}
+
+.cw-block-sub {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 1.4rem;
+    line-height: 1.6;
+}
+
+.cw-amenities-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.cw-amenities-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.cw-amenities-list li svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: #3a7bd5;
+}
+
+.cw-contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.cw-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    color: #333;
+}
+
+.cw-contact-item svg {
+    color: #3a7bd5;
+    flex-shrink: 0;
+}
+
+.cw-contact-item a {
+    color: #1a1a2e;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.cw-contact-item a:hover {
+    color: #3a7bd5;
+}
+
+/* Plan Blocks */
+.cw-plan-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.cw-plan-label {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 1rem;
+}
+
+.cw-plan-private .cw-plan-label {
+    color: #fff;
+}
+
+.cw-plan-desc {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+.cw-plan-private .cw-plan-desc {
+    color: rgba(255,255,255,0.8);
+}
+
+.cw-plan-rates {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-bottom: 2rem;
+}
+
+.cw-rate-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.85rem 1.2rem;
+    background: rgba(58, 123, 213, 0.06);
+    border: 1px solid rgba(58, 123, 213, 0.15);
+    border-radius: 8px;
+}
+
+.cw-plan-private .cw-rate-item {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.18);
+}
+
+.cw-rate-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #444;
+}
+
+.cw-plan-private .cw-rate-label {
+    color: rgba(255,255,255,0.85);
+}
+
+.cw-rate-price {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1a1a2e;
+}
+
+.cw-plan-private .cw-rate-price {
+    color: #fff;
+}
+
+.cw-rate-period {
+    font-size: 0.8rem;
+    font-weight: 400;
+    opacity: 0.6;
+    margin-left: 2px;
+}
+
+.cw-plan-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 3rem;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.cw-visual-desk {
+    background: linear-gradient(135deg, #e8f0fe, #d2e3fc);
+}
+
+.cw-visual-office {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.cw-visual-icon svg {
+    opacity: 0.7;
+}
+
+.cw-visual-desk p,
+.cw-visual-office p {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #555;
+}
+
+.cw-visual-office p {
+    color: rgba(255,255,255,0.7);
+}
+
+.btn-outline-light {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    border: 2px solid rgba(255,255,255,0.8);
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-light:hover {
+    background: rgba(255,255,255,0.15);
+    border-color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .cw-intro-grid,
+    .cw-info-grid,
+    .cw-plan-block {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .cw-plan-private .cw-plan-text {
+        order: 1;
+    }
+    .cw-plan-private .cw-plan-visual {
+        order: 2;
+    }
+}
+
 .amenities-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
