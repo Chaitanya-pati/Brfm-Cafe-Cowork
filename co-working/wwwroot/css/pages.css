@@ -316,27 +316,73 @@
     line-height: 1.6;
 }
 
-/* ── Co-Working Intro ── */
-.cw-intro-grid {
+/* ── Co-Working About (Image + Text) ── */
+.cw-about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
     align-items: center;
 }
 
-.cw-intro-left p {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 400;
-    line-height: 1.6;
-    color: #fff;
-    letter-spacing: -0.2px;
+.cw-about-image {
+    border-radius: 14px;
+    overflow: hidden;
+    line-height: 0;
 }
 
-.cw-intro-right p {
+.cw-space-img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.cw-space-img:hover {
+    transform: scale(1.02);
+}
+
+.cw-about-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cw-about-desc {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 400;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.88);
+    letter-spacing: -0.1px;
+}
+
+/* ── Membership Plans Header ── */
+.cw-plans-header {
+    margin-bottom: 4rem;
+}
+
+.cw-plans-title {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.3px;
+}
+
+.cw-plans-sub {
     font-size: 1rem;
     line-height: 1.8;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,0.55);
+    max-width: 680px;
+}
+
+.cw-plan-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+    margin: 4rem 0;
 }
 
 /* ── Standard Amenities + Booking ── */
@@ -748,17 +794,30 @@
     .menu-grid,
     .amenities-grid { grid-template-columns: repeat(2, 1fr); }
 
-    .cw-intro-grid,
+    .cw-about-grid,
     .cw-info-grid,
-    .cw-plan-block { grid-template-columns: 1fr; gap: 3rem; }
+    .cw-plan-block { grid-template-columns: 1fr; gap: 2.5rem; }
+
+    .cw-space-img { height: 320px; }
+
+    .cw-plan-private .cw-plan-visual { order: -1; }
 }
 
 @media (max-width: 768px) {
     .hero-title { font-size: 2.5rem; }
     .section { padding: 60px 24px; }
     .section-title { font-size: 2rem; }
+
     .menu-grid,
     .amenities-grid { grid-template-columns: 1fr; }
+
+    .cw-about-grid { gap: 2rem; }
+    .cw-space-img { height: 260px; }
+    .cw-about-desc { font-size: 1.15rem; }
+
+    .cw-plans-title { font-size: 2.1rem; }
+    .cw-plan-divider { margin: 3rem 0; }
+
     .contact-content { grid-template-columns: 1fr; gap: 50px; }
     .contact-section { padding: 70px 24px; }
     .specials-grid { grid-template-columns: 1fr; }
@@ -767,6 +826,8 @@
 @media (max-width: 480px) {
     .hero-title { font-size: 2rem; }
     .section-title { font-size: 1.75rem; }
+    .cw-plans-title { font-size: 1.75rem; }
+    .cw-space-img { height: 220px; }
     .contact-form-wrapper { padding: 1.8rem; }
 }
 
