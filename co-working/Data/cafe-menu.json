@@ -1,0 +1,97 @@
+{
+  "hero": {
+    "title": "Our Cafe",
+    "subtitle": "Where every cup tells a story"
+  },
+  "menuSubtitle": "100% Pure Vegetarian \u00a0·\u00a0 Handcrafted with love",
+  "categories": [
+    {
+      "name": "Hot Beverages",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" width=\"36\" height=\"36\"><path d=\"M18 8h1a4 4 0 0 1 0 8h-1\"/><path d=\"M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z\"/><line x1=\"6\" y1=\"1\" x2=\"6\" y2=\"4\"/><line x1=\"10\" y1=\"1\" x2=\"10\" y2=\"4\"/><line x1=\"14\" y1=\"1\" x2=\"14\" y2=\"4\"/></svg>",
+      "items": [
+        { "name": "Espresso", "price": "₹130" },
+        { "name": "Americano", "price": "₹130" },
+        { "name": "Cappuccino", "price": "₹180 / ₹220" },
+        { "name": "Machiatto", "price": "₹180" },
+        { "name": "Latte", "price": "₹220" },
+        { "name": "Flat White", "price": "₹220" },
+        { "name": "Mocha", "price": "₹220" },
+        { "name": "Hot Chocolate", "price": "₹180" },
+        { "name": "Hibiscus Rose / Mint Tea", "price": "₹150" },
+        { "name": "Matcha Classic", "price": "₹180" },
+        { "name": "Matcha Strawberry", "price": "₹220" }
+      ],
+      "addon": "Add-on: Vanilla / Caramel / Hazelnut / Whipped Cream \u00a0+₹50"
+    },
+    {
+      "name": "Cold Beverages",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" width=\"36\" height=\"36\"><path d=\"M8 2h8l1 6H7L8 2z\"/><path d=\"M7 8c0 5 1.5 10 5 10s5-5 5-10\"/><line x1=\"5\" y1=\"12\" x2=\"7\" y2=\"12\"/><line x1=\"17\" y1=\"12\" x2=\"19\" y2=\"12\"/><path d=\"M10 18v2m4-2v2\"/></svg>",
+      "items": [
+        { "name": "Iced Americano", "price": "₹180" },
+        { "name": "Iced Cappuccino", "price": "₹180" },
+        { "name": "Iced Latte", "price": "₹180" },
+        { "name": "Iced Flat White", "price": "₹220" },
+        { "name": "Iced Mocha", "price": "₹220" },
+        { "name": "Iced Machiatto", "price": "₹220" },
+        { "name": "Iced Frapuccino", "price": "₹220" },
+        { "name": "Cold Brew", "price": "₹180" },
+        { "name": "Lemonade", "price": "₹180" },
+        { "name": "Peach Coconut Refresher", "price": "₹180" },
+        { "name": "Valencia Orange Juice", "price": "₹220" }
+      ],
+      "addon": "Oat / Almond Milk \u00a0+₹60 \u00a0·\u00a0 Extra Shot \u00a0+₹60"
+    },
+    {
+      "name": "Food",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" width=\"36\" height=\"36\"><path d=\"M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2\"/><path d=\"M7 2v20\"/><path d=\"M21 15V2a5 5 0 0 0-5 5v6h3.5\"/><path d=\"M19.5 13V22\"/></svg>",
+      "items": [
+        { "name": "Chilli Cheese Toast", "price": "₹170" },
+        { "name": "Marinara", "price": "₹140" },
+        { "name": "Corn Sandwich", "price": "₹150" },
+        { "name": "Chutney Sandwich", "price": "₹150" },
+        { "name": "Korean Bun", "price": "₹150" },
+        { "name": "Fresh Tomato Basil Soup", "price": "₹150" },
+        { "name": "French Fries", "price": "₹150" },
+        { "name": "Nachos & Salsa", "price": "₹120" }
+      ],
+      "addon": null
+    }
+  ],
+  "specials": [
+    { "name": "Mediterranean Bowl", "description": "Barley, pickled veggies, hummus and a host of seasonal produce", "price": "₹220" },
+    { "name": "Granola Bowl", "description": "In-house granola with nuts, oats, honey, greek yoghurt and seasonal fruits", "price": "₹280" },
+    { "name": "Penne Arrabiata", "description": "Pasta served with home made tomato basil sauce", "price": "₹220" },
+    { "name": "Aglio e Olio", "description": "Garlic, butter, chilli, parmesan — a smooth, spicy twist on the classic", "price": "₹220" },
+    { "name": "Falafel Burger", "description": "Crispy falafel with bold mediterranean vibes, flavours, freshness and crunch", "price": "₹220" },
+    { "name": "Chia Seed Pudding", "description": "Healthy all-day treat with chia seeds soaked in coconut milk and fruits", "price": "₹180" },
+    { "name": "Cubano", "description": "Bold espresso with a Cuban-style twist", "price": "₹150" },
+    { "name": "Affogato", "description": "Espresso poured over ice cream — simple, indulgent", "price": "₹180" }
+  ],
+  "amenities": [
+    {
+      "name": "Free WiFi",
+      "description": "High-speed internet for browsing and light work",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M5 12.55a11 11 0 0 1 14.08 0\"/><path d=\"M1.42 9a16 16 0 0 1 21.16 0\"/><path d=\"M8.53 16.11a6 6 0 0 1 6.95 0\"/><circle cx=\"12\" cy=\"20\" r=\"1\" fill=\"currentColor\"/></svg>"
+    },
+    {
+      "name": "Cozy Seating",
+      "description": "Comfortable sofas, armchairs, and window seats",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3\"/><path d=\"M2 11v5a2 2 0 0 0 2 2h1v2h2v-2h10v2h2v-2h1a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0H6a2 2 0 0 0-4 0z\"/></svg>"
+    },
+    {
+      "name": "Natural Light",
+      "description": "Large windows with beautiful city views",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"5\"/><line x1=\"12\" y1=\"1\" x2=\"12\" y2=\"3\"/><line x1=\"12\" y1=\"21\" x2=\"12\" y2=\"23\"/><line x1=\"4.22\" y1=\"4.22\" x2=\"5.64\" y2=\"5.64\"/><line x1=\"18.36\" y1=\"18.36\" x2=\"19.78\" y2=\"19.78\"/><line x1=\"1\" y1=\"12\" x2=\"3\" y2=\"12\"/><line x1=\"21\" y1=\"12\" x2=\"23\" y2=\"12\"/><line x1=\"4.22\" y1=\"19.78\" x2=\"5.64\" y2=\"18.36\"/><line x1=\"18.36\" y1=\"5.64\" x2=\"19.78\" y2=\"4.22\"/></svg>"
+    },
+    {
+      "name": "Photo-friendly Space",
+      "description": "Aesthetic interiors and seating areas designed for great photos",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z\"/><circle cx=\"12\" cy=\"13\" r=\"4\"/></svg>"
+    },
+    {
+      "name": "Book Corner",
+      "description": "A selection of books for reading enthusiasts",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M4 19.5A2.5 2.5 0 0 1 6.5 17H20\"/><path d=\"M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z\"/></svg>"
+    }
+  ]
+}

@@ -1,4 +1,5 @@
-﻿@{
+@model co_working.Models.CafeData
+@{
     Layout = null;
 }
 <!DOCTYPE html>
@@ -6,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cafe - Brew & Work</title>
+    <title>Cafe - Brew &amp; Work</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -18,7 +19,7 @@
         <div class="header-container">
             <a href="/" class="logo">
                 <span class="logo-icon">&#9827;</span>
-                <span class="logo-text">Brew & Work</span>
+                <span class="logo-text">Brew &amp; Work</span>
             </a>
             <nav class="nav">
                 <button class="nav-toggle" aria-label="Toggle navigation">
@@ -27,8 +28,8 @@
                     <span></span>
                 </button>
                 <ul class="nav-menu">
-                    <li><a asp-controller="Pages" asp-action="Index" class="nav-link active">Home</a></li>
-                    <li><a asp-controller="Pages" asp-action="Cafe" class="nav-link">Cafe</a></li>
+                    <li><a asp-controller="Pages" asp-action="Index" class="nav-link">Home</a></li>
+                    <li><a asp-controller="Pages" asp-action="Cafe" class="nav-link active">Cafe</a></li>
                     <li><a asp-controller="Pages" asp-action="Coworking" class="nav-link">Co-Working</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
@@ -40,8 +41,8 @@
         <section class="hero hero-cafe">
             <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1 class="hero-title">Our Cafe</h1>
-                <p class="hero-subtitle">Where every cup tells a story</p>
+                <h1 class="hero-title">@Model.Hero.Title</h1>
+                <p class="hero-subtitle">@Model.Hero.Subtitle</p>
             </div>
         </section>
 
@@ -49,150 +50,47 @@
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">Our Menu</h2>
-                    <p class="section-subtitle">100% Pure Vegetarian &nbsp;·&nbsp; Handcrafted with love</p>
+                    <p class="section-subtitle">@Html.Raw(Model.MenuSubtitle)</p>
                 </div>
 
                 <div class="menu-grid">
-                    <div class="menu-category glass-card">
-                        <div class="menu-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="36" height="36">
-                                <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
-                                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
-                                <line x1="6" y1="1" x2="6" y2="4"/>
-                                <line x1="10" y1="1" x2="10" y2="4"/>
-                                <line x1="14" y1="1" x2="14" y2="4"/>
-                            </svg>
+                    @foreach (var category in Model.Categories)
+                    {
+                        <div class="menu-category glass-card">
+                            <div class="menu-icon">
+                                @Html.Raw(category.Icon)
+                            </div>
+                            <h3>@category.Name</h3>
+                            <ul class="menu-items">
+                                @foreach (var item in category.Items)
+                                {
+                                    <li><span>@item.Name</span><span>@item.Price</span></li>
+                                }
+                            </ul>
+                            @if (!string.IsNullOrEmpty(category.Addon))
+                            {
+                                <p class="menu-addon">@Html.Raw(category.Addon)</p>
+                            }
                         </div>
-                        <h3>Hot Beverages</h3>
-                        <ul class="menu-items">
-                            <li><span>Espresso</span><span>₹130</span></li>
-                            <li><span>Americano</span><span>₹130</span></li>
-                            <li><span>Cappuccino</span><span>₹180 / ₹220</span></li>
-                            <li><span>Machiatto</span><span>₹180</span></li>
-                            <li><span>Latte</span><span>₹220</span></li>
-                            <li><span>Flat White</span><span>₹220</span></li>
-                            <li><span>Mocha</span><span>₹220</span></li>
-                            <li><span>Hot Chocolate</span><span>₹180</span></li>
-                            <li><span>Hibiscus Rose / Mint Tea</span><span>₹150</span></li>
-                            <li><span>Matcha Classic</span><span>₹180</span></li>
-                            <li><span>Matcha Strawberry</span><span>₹220</span></li>
-                        </ul>
-                        <p class="menu-addon">Add-on: Vanilla / Caramel / Hazelnut / Whipped Cream &nbsp;+₹50</p>
-                    </div>
-
-                    <div class="menu-category glass-card">
-                        <div class="menu-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="36" height="36">
-                                <path d="M8 2h8l1 6H7L8 2z"/>
-                                <path d="M7 8c0 5 1.5 10 5 10s5-5 5-10"/>
-                                <line x1="5" y1="12" x2="7" y2="12"/>
-                                <line x1="17" y1="12" x2="19" y2="12"/>
-                                <path d="M10 18v2m4-2v2"/>
-                            </svg>
-                        </div>
-                        <h3>Cold Beverages</h3>
-                        <ul class="menu-items">
-                            <li><span>Iced Americano</span><span>₹180</span></li>
-                            <li><span>Iced Cappuccino</span><span>₹180</span></li>
-                            <li><span>Iced Latte</span><span>₹180</span></li>
-                            <li><span>Iced Flat White</span><span>₹220</span></li>
-                            <li><span>Iced Mocha</span><span>₹220</span></li>
-                            <li><span>Iced Machiatto</span><span>₹220</span></li>
-                            <li><span>Iced Frapuccino</span><span>₹220</span></li>
-                            <li><span>Cold Brew</span><span>₹180</span></li>
-                            <li><span>Lemonade</span><span>₹180</span></li>
-                            <li><span>Peach Coconut Refresher</span><span>₹180</span></li>
-                            <li><span>Valencia Orange Juice</span><span>₹220</span></li>
-                        </ul>
-                        <p class="menu-addon">Oat / Almond Milk &nbsp;+₹60 &nbsp;·&nbsp; Extra Shot &nbsp;+₹60</p>
-                    </div>
-
-                    <div class="menu-category glass-card">
-                        <div class="menu-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="36" height="36">
-                                <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
-                                <path d="M7 2v20"/>
-                                <path d="M21 15V2a5 5 0 0 0-5 5v6h3.5"/>
-                                <path d="M19.5 13V22"/>
-                            </svg>
-                        </div>
-                        <h3>Food</h3>
-                        <ul class="menu-items">
-                            <li><span>Chilli Cheese Toast</span><span>₹170</span></li>
-                            <li><span>Marinara</span><span>₹140</span></li>
-                            <li><span>Corn Sandwich</span><span>₹150</span></li>
-                            <li><span>Chutney Sandwich</span><span>₹150</span></li>
-                            <li><span>Korean Bun</span><span>₹150</span></li>
-                            <li><span>Fresh Tomato Basil Soup</span><span>₹150</span></li>
-                            <li><span>French Fries</span><span>₹150</span></li>
-                            <li><span>Nachos &amp; Salsa</span><span>₹120</span></li>
-                        </ul>
-                    </div>
+                    }
                 </div>
 
-                <!-- Specials Section -->
                 <div class="specials-section">
                     <div class="specials-header">
-                        <span class="specials-label">★ Chef's Specials ★</span>
+                        <span class="specials-label">&#9733; Chef's Specials &#9733;</span>
                         <p>Signature dishes crafted fresh every day</p>
                     </div>
                     <div class="specials-grid">
-                        <div class="special-item">
-                            <div class="special-info">
-                                <h4>Mediterranean Bowl</h4>
-                                <p>Barley, pickled veggies, hummus and a host of seasonal produce</p>
+                        @foreach (var special in Model.Specials)
+                        {
+                            <div class="special-item">
+                                <div class="special-info">
+                                    <h4>@special.Name</h4>
+                                    <p>@special.Description</p>
+                                </div>
+                                <span class="special-price">@special.Price</span>
                             </div>
-                            <span class="special-price">₹220</span>
-                        </div>
-                        <div class="special-item">
-                            <div class="special-info">
-                                <h4>Granola Bowl</h4>
-                                <p>In-house granola with nuts, oats, honey, greek yoghurt and seasonal fruits</p>
-                            </div>
-                            <span class="special-price">₹280</span>
-                        </div>
-                        <div class="special-item">
-                            <div class="special-info">
-                                <h4>Penne Arrabiata</h4>
-                                <p>Pasta served with home made tomato basil sauce</p>
-                            </div>
-                            <span class="special-price">₹220</span>
-                        </div>
-                        <div class="special-item">
-                            <div class="special-info">
-                                <h4>Aglio e Olio</h4>
-                                <p>Garlic, butter, chilli, parmesan — a smooth, spicy twist on the classic</p>
-                            </div>
-                            <span class="special-price">₹220</span>
-                        </div>
-                        <div class="special-item">
-                            <div class="special-info">
-                                <h4>Falafel Burger</h4>
-                                <p>Crispy falafel with bold mediterranean vibes, flavours, freshness and crunch</p>
-                            </div>
-                            <span class="special-price">₹220</span>
-                        </div>
-                        <div class="special-item">
-                            <div class="special-info">
-                                <h4>Chia Seed Pudding</h4>
-                                <p>Healthy all-day treat with chia seeds soaked in coconut milk and fruits</p>
-                            </div>
-                            <span class="special-price">₹180</span>
-                        </div>
-                        <div class="special-item">
-                            <div class="special-info">
-                                <h4>Cubano</h4>
-                                <p>Bold espresso with a Cuban-style twist</p>
-                            </div>
-                            <span class="special-price">₹150</span>
-                        </div>
-                        <div class="special-item">
-                            <div class="special-info">
-                                <h4>Affogato</h4>
-                                <p>Espresso poured over ice cream — simple, indulgent</p>
-                            </div>
-                            <span class="special-price">₹180</span>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -206,69 +104,16 @@
                 </div>
 
                 <div class="amenities-grid">
-                    <div class="amenity-card">
-                        <div class="amenity-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12.55a11 11 0 0 1 14.08 0" />
-                                <path d="M1.42 9a16 16 0 0 1 21.16 0" />
-                                <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
-                                <circle cx="12" cy="20" r="1" fill="currentColor" />
-                            </svg>
+                    @foreach (var amenity in Model.Amenities)
+                    {
+                        <div class="amenity-card">
+                            <div class="amenity-icon">
+                                @Html.Raw(amenity.Icon)
+                            </div>
+                            <h3>@amenity.Name</h3>
+                            <p>@amenity.Description</p>
                         </div>
-                        <h3>Free WiFi</h3>
-                        <p>High-speed internet for browsing and light work</p>
-                    </div>
-
-                    <div class="amenity-card">
-                        <div class="amenity-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3" />
-                                <path d="M2 11v5a2 2 0 0 0 2 2h1v2h2v-2h10v2h2v-2h1a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0H6a2 2 0 0 0-4 0z" />
-                            </svg>
-                        </div>
-                        <h3>Cozy Seating</h3>
-                        <p>Comfortable sofas, armchairs, and window seats</p>
-                    </div>
-
-                    <div class="amenity-card">
-                        <div class="amenity-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="5" />
-                                <line x1="12" y1="1" x2="12" y2="3" />
-                                <line x1="12" y1="21" x2="12" y2="23" />
-                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                                <line x1="1" y1="12" x2="3" y2="12" />
-                                <line x1="21" y1="12" x2="23" y2="12" />
-                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-                            </svg>
-                        </div>
-                        <h3>Natural Light</h3>
-                        <p>Large windows with beautiful city views</p>
-                    </div>
-
-                    <div class="amenity-card">
-                        <div class="amenity-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-                                <circle cx="12" cy="13" r="4" />
-                            </svg>
-                        </div>
-                        <h3>Photo-friendly Space</h3>
-                        <p>Aesthetic interiors and seating areas designed for great photos</p>
-                    </div>
-
-                    <div class="amenity-card">
-                        <div class="amenity-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-                            </svg>
-                        </div>
-                        <h3>Book Corner</h3>
-                        <p>A selection of books for reading enthusiasts</p>
-                    </div>
+                    }
                 </div>
             </div>
         </section>

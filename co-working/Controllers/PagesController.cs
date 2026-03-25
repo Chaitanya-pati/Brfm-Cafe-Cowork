@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Text.Json;
 using co_working.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,10 +8,17 @@ namespace co_working.Controllers
     public class PagesController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IWebHostEnvironment _env;
 
-        public PagesController(ILogger<HomeController> logger)
+        private static readonly JsonSerializerOptions _jsonOptions = new()
+        {
+            PropertyNameCaseInsensitive = true
+        };
+
+        public PagesController(ILogger<HomeController> logger, IWebHostEnvironment env)
         {
             _logger = logger;
+            _env = env;
         }
 
         public IActionResult Index()
@@ -20,11 +28,18 @@ namespace co_working.Controllers
 
         public IActionResult Cafe()
         {
-            return View();
+            var path = Path.Combine(_env.ContentRootPath, "Data", "cafe-menu.json");
+            var json = System.IO.File.ReadAllText(path);
+            var data = JsonSerializer.Deserialize<CafeData>(json, _jsonOptions) ?? new CafeData();
+            return View(data);
         }
+
         public IActionResult Coworking()
         {
-            return View();
+            var path = Path.Combine(_env.ContentRootPath, "Data", "coworking-plans.json");
+            var json = System.IO.File.ReadAllText(path);
+            var data = JsonSerializer.Deserialize<CoworkingData>(json, _jsonOptions) ?? new CoworkingData();
+            return View(data);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

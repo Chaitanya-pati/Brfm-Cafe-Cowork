@@ -1,10 +1,13 @@
+@model co_working.Models.CoworkingData
 @{
     Layout = null;
 }
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Co-Working - Brew & Work</title>
+    <title>Co-Working - Brew &amp; Work</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -16,7 +19,7 @@
         <div class="header-container">
             <a href="/" class="logo">
                 <span class="logo-icon">&#9827;</span>
-                <span class="logo-text">Brew & Work</span>
+                <span class="logo-text">Brew &amp; Work</span>
             </a>
             <nav class="nav">
                 <button class="nav-toggle" aria-label="Toggle navigation">
@@ -35,16 +38,14 @@
     </header>
 
     <main>
-        <!-- Hero -->
         <section class="hero hero-cowork">
             <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1 class="hero-title">Co-Working Space</h1>
-                <p class="hero-subtitle">Where productivity meets inspiration</p>
+                <h1 class="hero-title">@Model.Hero.Title</h1>
+                <p class="hero-subtitle">@Model.Hero.Subtitle</p>
             </div>
         </section>
 
-        <!-- Image + About Description -->
         <section class="section section-light cw-about-section">
             <div class="container">
                 <div class="cw-about-grid">
@@ -52,99 +53,77 @@
                         <img src="~/Images/coworkImage.jpg" alt="HungryDad Co-Working Space" class="cw-space-img" />
                     </div>
                     <div class="cw-about-text">
-                        <span class="cw-about-eyebrow">Our Space</span>
-                        <p class="cw-about-desc">At HungryDad, every individual finds a home where work doesn't feel like work. Come to our vibrant space packed with natural light and greenery. Our co-working fuels productivity and collaboration.</p>
+                        <span class="cw-about-eyebrow">@Model.About.Eyebrow</span>
+                        <p class="cw-about-desc">@Model.About.Description</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Membership Plans -->
         <section class="section section-cowork-themed">
             <div class="container">
                 <div class="cw-plans-header">
-                    <span class="cw-plans-eyebrow">What we offer</span>
-                    <h2 class="cw-plans-title">Membership Plans</h2>
+                    <span class="cw-plans-eyebrow">@Model.PlansHeader.Eyebrow</span>
+                    <h2 class="cw-plans-title">@Model.PlansHeader.Title</h2>
                     <div class="cw-plans-divider"></div>
-                    <p class="cw-plans-sub">One size never fits all when it comes to working. Whether you are a creative freelancer, an entrepreneur, a student or a small team of business mavericks, we have a membership plan that will work for you.</p>
+                    <p class="cw-plans-sub">@Model.PlansHeader.Description</p>
                 </div>
 
-                <!-- Hot Desks -->
-                <div class="cw-plan-block cw-plan-hotdesk">
-                    <div class="cw-plan-text">
-                        <span class="cw-plan-label">Hot Desks</span>
-                        <p class="cw-plan-desc">A single desk you can book on a daily, weekly or monthly basis. Flexible, no long-term commitment — just show up and get to work.</p>
-                        <div class="cw-plan-rates">
-                            <div class="cw-rate-item">
-                                <span class="cw-rate-label">Day Pass</span>
-                                <span class="cw-rate-price">₹750</span>
+                @for (int i = 0; i < Model.Plans.Count; i++)
+                {
+                    var plan = Model.Plans[i];
+                    <div class="cw-plan-block @plan.BlockClass">
+                        @if (!plan.IsReversed)
+                        {
+                            <div class="cw-plan-text">
+                                <span class="cw-plan-label">@plan.Name</span>
+                                <p class="cw-plan-desc">@plan.Description</p>
+                                <div class="cw-plan-rates">
+                                    @foreach (var rate in plan.Rates)
+                                    {
+                                        <div class="cw-rate-item">
+                                            <span class="cw-rate-label">@rate.Label</span>
+                                            <span class="cw-rate-price">@rate.Price@if (!string.IsNullOrEmpty(rate.Period)){<span class="cw-rate-period">@rate.Period</span>}</span>
+                                        </div>
+                                    }
+                                </div>
+                                <a href="@plan.CtaHref" class="@plan.CtaClass">@plan.CtaText</a>
                             </div>
-                            <div class="cw-rate-item">
-                                <span class="cw-rate-label">Week Pass</span>
-                                <span class="cw-rate-price">₹2,500</span>
+                            <div class="cw-plan-visual @plan.VisualClass">
+                                <div class="cw-visual-icon">@Html.Raw(plan.Icon)</div>
+                                <p>@plan.VisualLabel</p>
                             </div>
-                            <div class="cw-rate-item">
-                                <span class="cw-rate-label">Month Pass</span>
-                                <span class="cw-rate-price">₹7,500</span>
+                        }
+                        else
+                        {
+                            <div class="cw-plan-visual @plan.VisualClass">
+                                <div class="cw-visual-icon">@Html.Raw(plan.Icon)</div>
+                                <p>@plan.VisualLabel</p>
                             </div>
-                        </div>
-                        <a href="#contact" class="btn btn-cowork">Book a Desk</a>
+                            <div class="cw-plan-text">
+                                <span class="cw-plan-label">@plan.Name</span>
+                                <p class="cw-plan-desc">@plan.Description</p>
+                                <div class="cw-plan-rates">
+                                    @foreach (var rate in plan.Rates)
+                                    {
+                                        <div class="cw-rate-item">
+                                            <span class="cw-rate-label">@rate.Label</span>
+                                            <span class="cw-rate-price">@rate.Price@if (!string.IsNullOrEmpty(rate.Period)){<span class="cw-rate-period">@rate.Period</span>}</span>
+                                        </div>
+                                    }
+                                </div>
+                                <a href="@plan.CtaHref" class="@plan.CtaClass">@plan.CtaText</a>
+                            </div>
+                        }
                     </div>
-                    <div class="cw-plan-visual cw-visual-desk">
-                        <div class="cw-visual-icon">
-                            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" width="72" height="72">
-                                <rect x="8" y="36" width="48" height="6" rx="2"/>
-                                <rect x="14" y="42" width="4" height="14" rx="1"/>
-                                <rect x="46" y="42" width="4" height="14" rx="1"/>
-                                <rect x="12" y="16" width="40" height="20" rx="2"/>
-                                <circle cx="32" cy="26" r="4"/>
-                            </svg>
-                        </div>
-                        <p>Flexible workspace, your way</p>
-                    </div>
-                </div>
-
-                <div class="cw-plan-divider"></div>
-
-                <!-- Private Offices -->
-                <div class="cw-plan-block cw-plan-private">
-                    <div class="cw-plan-visual cw-visual-office">
-                        <div class="cw-visual-icon">
-                            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" width="72" height="72">
-                                <rect x="6" y="10" width="52" height="40" rx="3"/>
-                                <path d="M6 26h52"/>
-                                <rect x="14" y="34" width="10" height="16"/>
-                                <rect x="40" y="34" width="10" height="16"/>
-                                <path d="M28 50V38h8v12"/>
-                                <rect x="3" y="50" width="58" height="4" rx="1"/>
-                            </svg>
-                        </div>
-                        <p>Your team's private command centre</p>
-                    </div>
-                    <div class="cw-plan-text">
-                        <span class="cw-plan-label">Private Offices</span>
-                        <p class="cw-plan-desc">A plug-and-play space for your team — lockable and exclusively yours. Ready from day one, so your team can hit the ground running.</p>
-                        <div class="cw-plan-rates">
-                            <div class="cw-rate-item">
-                                <span class="cw-rate-label">4 Members</span>
-                                <span class="cw-rate-price">₹20,000<span class="cw-rate-period">/mo</span></span>
-                            </div>
-                            <div class="cw-rate-item">
-                                <span class="cw-rate-label">6 Members</span>
-                                <span class="cw-rate-price">₹25,000<span class="cw-rate-period">/mo</span></span>
-                            </div>
-                            <div class="cw-rate-item">
-                                <span class="cw-rate-label">8 Members</span>
-                                <span class="cw-rate-price">₹30,000<span class="cw-rate-period">/mo</span></span>
-                            </div>
-                        </div>
-                        <a href="#contact" class="btn btn-outline-light">Enquire Now</a>
-                    </div>
-                </div>
+                    if (i < Model.Plans.Count - 1)
+                    {
+                        <div class="cw-plan-divider"></div>
+                    }
+                }
             </div>
         </section>
 
-        <!-- Workspace Amenities -->
         <section class="section section-light">
             <div class="container">
                 <div class="section-header">
@@ -153,62 +132,16 @@
                 </div>
 
                 <div class="amenities-grid amenities-grid-5">
-                    <div class="amenity-card">
-                        <div class="amenity-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/>
-                            </svg>
+                    @foreach (var amenity in Model.Amenities)
+                    {
+                        <div class="amenity-card">
+                            <div class="amenity-icon">
+                                @Html.Raw(amenity.Icon)
+                            </div>
+                            <h3>@amenity.Name</h3>
+                            <p>@amenity.Description</p>
                         </div>
-                        <h3>Air Conditioning</h3>
-                        <p>Comfortable climate-controlled environment year round</p>
-                    </div>
-
-                    <div class="amenity-card">
-                        <div class="amenity-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M8.111 16.404a5.5 5.5 0 0 1 7.778 0M12 20h.01M3 8l1.5 1.5L6 8l1.5 1.5L9 8l1.5 1.5L12 8l1.5 1.5L15 8l1.5 1.5L18 8l1.5 1.5L21 8v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z" />
-                            </svg>
-                        </div>
-                        <h3>High Speed WiFi</h3>
-                        <p>Blazing-fast fiber internet for uninterrupted work</p>
-                    </div>
-
-                    <div class="amenity-card">
-                        <div class="amenity-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                                <polyline points="9 22 9 12 15 12 15 22" />
-                            </svg>
-                        </div>
-                        <h3>Daily Housekeeping</h3>
-                        <p>Regular cleaning and maintenance so you can focus</p>
-                    </div>
-
-                    <div class="amenity-card">
-                        <div class="amenity-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
-                                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
-                                <line x1="6" y1="1" x2="6" y2="4" />
-                                <line x1="10" y1="1" x2="10" y2="4" />
-                                <line x1="14" y1="1" x2="14" y2="4" />
-                            </svg>
-                        </div>
-                        <h3>Coffee &amp; Tea</h3>
-                        <p>Freshly brewed drinks to keep you energised all day</p>
-                    </div>
-
-                    <div class="amenity-card">
-                        <div class="amenity-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="6 9 6 2 18 2 18 9" />
-                                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
-                                <rect x="6" y="14" width="12" height="8" />
-                            </svg>
-                        </div>
-                        <h3>Printing Service</h3>
-                        <p>Professional printing and scanning available at a fee</p>
-                    </div>
+                    }
                 </div>
             </div>
         </section>
@@ -220,3 +153,4 @@
 
     <script src="~/js/main.js"></script>
 </body>
+</html>

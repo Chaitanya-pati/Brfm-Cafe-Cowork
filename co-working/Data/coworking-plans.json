@@ -1,0 +1,78 @@
+{
+  "hero": {
+    "title": "Co-Working Space",
+    "subtitle": "Where productivity meets inspiration"
+  },
+  "about": {
+    "eyebrow": "Our Space",
+    "description": "At HungryDad, every individual finds a home where work doesn't feel like work. Come to our vibrant space packed with natural light and greenery. Our co-working fuels productivity and collaboration."
+  },
+  "plansHeader": {
+    "eyebrow": "What we offer",
+    "title": "Membership Plans",
+    "description": "One size never fits all when it comes to working. Whether you are a creative freelancer, an entrepreneur, a student or a small team of business mavericks, we have a membership plan that will work for you."
+  },
+  "plans": [
+    {
+      "name": "Hot Desks",
+      "description": "A single desk you can book on a daily, weekly or monthly basis. Flexible, no long-term commitment — just show up and get to work.",
+      "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" width=\"72\" height=\"72\"><rect x=\"8\" y=\"36\" width=\"48\" height=\"6\" rx=\"2\"/><rect x=\"14\" y=\"42\" width=\"4\" height=\"14\" rx=\"1\"/><rect x=\"46\" y=\"42\" width=\"4\" height=\"14\" rx=\"1\"/><rect x=\"12\" y=\"16\" width=\"40\" height=\"20\" rx=\"2\"/><circle cx=\"32\" cy=\"26\" r=\"4\"/></svg>",
+      "visualLabel": "Flexible workspace, your way",
+      "visualClass": "cw-visual-desk",
+      "blockClass": "cw-plan-hotdesk",
+      "isReversed": false,
+      "ctaText": "Book a Desk",
+      "ctaClass": "btn btn-cowork",
+      "ctaHref": "#contact",
+      "rates": [
+        { "label": "Day Pass", "price": "₹750", "period": "" },
+        { "label": "Week Pass", "price": "₹2,500", "period": "" },
+        { "label": "Month Pass", "price": "₹7,500", "period": "" }
+      ]
+    },
+    {
+      "name": "Private Offices",
+      "description": "A plug-and-play space for your team — lockable and exclusively yours. Ready from day one, so your team can hit the ground running.",
+      "icon": "<svg viewBox=\"0 0 64 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" width=\"72\" height=\"72\"><rect x=\"6\" y=\"10\" width=\"52\" height=\"40\" rx=\"3\"/><path d=\"M6 26h52\"/><rect x=\"14\" y=\"34\" width=\"10\" height=\"16\"/><rect x=\"40\" y=\"34\" width=\"10\" height=\"16\"/><path d=\"M28 50V38h8v12\"/><rect x=\"3\" y=\"50\" width=\"58\" height=\"4\" rx=\"1\"/></svg>",
+      "visualLabel": "Your team's private command centre",
+      "visualClass": "cw-visual-office",
+      "blockClass": "cw-plan-private",
+      "isReversed": true,
+      "ctaText": "Enquire Now",
+      "ctaClass": "btn btn-outline-light",
+      "ctaHref": "#contact",
+      "rates": [
+        { "label": "4 Members", "price": "₹20,000", "period": "/mo" },
+        { "label": "6 Members", "price": "₹25,000", "period": "/mo" },
+        { "label": "8 Members", "price": "₹30,000", "period": "/mo" }
+      ]
+    }
+  ],
+  "amenities": [
+    {
+      "name": "Air Conditioning",
+      "description": "Comfortable climate-controlled environment year round",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2\"/></svg>"
+    },
+    {
+      "name": "High Speed WiFi",
+      "description": "Blazing-fast fiber internet for uninterrupted work",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M8.111 16.404a5.5 5.5 0 0 1 7.778 0M12 20h.01M3 8l1.5 1.5L6 8l1.5 1.5L9 8l1.5 1.5L12 8l1.5 1.5L15 8l1.5 1.5L18 8l1.5 1.5L21 8v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8z\"/></svg>"
+    },
+    {
+      "name": "Daily Housekeeping",
+      "description": "Regular cleaning and maintenance so you can focus",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\"/><polyline points=\"9 22 9 12 15 12 15 22\"/></svg>"
+    },
+    {
+      "name": "Coffee & Tea",
+      "description": "Freshly brewed drinks to keep you energised all day",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M18 8h1a4 4 0 0 1 0 8h-1\"/><path d=\"M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z\"/><line x1=\"6\" y1=\"1\" x2=\"6\" y2=\"4\"/><line x1=\"10\" y1=\"1\" x2=\"10\" y2=\"4\"/><line x1=\"14\" y1=\"1\" x2=\"14\" y2=\"4\"/></svg>"
+    },
+    {
+      "name": "Printing Service",
+      "description": "Professional printing and scanning available at a fee",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><polyline points=\"6 9 6 2 18 2 18 9\"/><path d=\"M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2\"/><rect x=\"6\" y=\"14\" width=\"12\" height=\"8\"/></svg>"
+    }
+  ]
+}
