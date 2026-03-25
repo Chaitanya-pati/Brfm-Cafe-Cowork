@@ -138,9 +138,31 @@
 }
 
 .menu-icon {
-    font-size: 2.4rem;
-    margin-bottom: 1rem;
+    margin: 0 auto 1.2rem;
     text-align: center;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+}
+
+.cafe-body .menu-icon {
+    background: rgba(200, 129, 58, 0.1);
+    border-color: rgba(200, 129, 58, 0.2);
+}
+
+.menu-icon svg {
+    color: rgba(255,255,255,0.8);
+    width: 22px;
+    height: 22px;
+}
+
+.cafe-body .menu-icon svg {
+    color: var(--color-cafe-accent);
 }
 
 .menu-category h3 {
