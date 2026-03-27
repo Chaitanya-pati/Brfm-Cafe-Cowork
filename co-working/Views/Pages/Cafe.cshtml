@@ -51,48 +51,46 @@
             <div class="cafe-carousel" id="cafeCarousel">
                 <div class="carousel-track" id="carouselTrack">
                     <div class="carousel-slide">
-                        <div class="slide-bg" style="background-image:url('/Images/cafeImg1.webp')"></div>
                         <img src="/Images/cafeImg1.webp" alt="Brew &amp; Work Cafe" loading="eager" />
                     </div>
                     <div class="carousel-slide">
-                        <div class="slide-bg" style="background-image:url('/Images/cafeImg2.webp')"></div>
                         <img src="/Images/cafeImg2.webp" alt="Brew &amp; Work Cafe" loading="lazy" />
                     </div>
                     <div class="carousel-slide">
-                        <div class="slide-bg" style="background-image:url('/Images/cafeImg3.webp')"></div>
                         <img src="/Images/cafeImg3.webp" alt="Brew &amp; Work Cafe" loading="lazy" />
                     </div>
                     <div class="carousel-slide">
-                        <div class="slide-bg" style="background-image:url('/Images/cafeImg4.webp')"></div>
                         <img src="/Images/cafeImg4.webp" alt="Brew &amp; Work Cafe" loading="lazy" />
                     </div>
                     <div class="carousel-slide">
-                        <div class="slide-bg" style="background-image:url('/Images/cafeImg5.webp')"></div>
                         <img src="/Images/cafeImg5.webp" alt="Brew &amp; Work Cafe" loading="lazy" />
                     </div>
                 </div>
 
+                <div class="carousel-overlay-gradient"></div>
+
                 <button class="carousel-btn carousel-btn-prev" id="carouselPrev" aria-label="Previous">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="15 18 9 12 15 6"/>
                     </svg>
                 </button>
                 <button class="carousel-btn carousel-btn-next" id="carouselNext" aria-label="Next">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="9 18 15 12 9 6"/>
                     </svg>
                 </button>
 
-                <div class="carousel-dots" id="carouselDots">
-                    <button class="carousel-dot active" data-index="0" aria-label="Slide 1"></button>
-                    <button class="carousel-dot" data-index="1" aria-label="Slide 2"></button>
-                    <button class="carousel-dot" data-index="2" aria-label="Slide 3"></button>
-                    <button class="carousel-dot" data-index="3" aria-label="Slide 4"></button>
-                    <button class="carousel-dot" data-index="4" aria-label="Slide 5"></button>
-                </div>
-
-                <div class="carousel-counter">
-                    <span id="carouselCurrent">1</span> / <span>5</span>
+                <div class="carousel-footer">
+                    <div class="carousel-dots" id="carouselDots">
+                        <button class="carousel-dot active" data-index="0" aria-label="Slide 1"></button>
+                        <button class="carousel-dot" data-index="1" aria-label="Slide 2"></button>
+                        <button class="carousel-dot" data-index="2" aria-label="Slide 3"></button>
+                        <button class="carousel-dot" data-index="3" aria-label="Slide 4"></button>
+                        <button class="carousel-dot" data-index="4" aria-label="Slide 5"></button>
+                    </div>
+                    <div class="carousel-counter">
+                        <span id="carouselCurrent">1</span><span class="carousel-sep"> / </span><span>5</span>
+                    </div>
                 </div>
             </div>
         </section>
