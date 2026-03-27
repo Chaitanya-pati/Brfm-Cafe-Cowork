@@ -954,3 +954,150 @@
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* ── Cafe Carousel ── */
+.cafe-carousel-section {
+    background: #000;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.cafe-carousel {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    min-height: 400px;
+    max-height: 720px;
+    overflow: hidden;
+    background: #0a0a0a;
+    cursor: grab;
+}
+
+.cafe-carousel:active { cursor: grabbing; }
+
+.carousel-track {
+    display: flex;
+    height: 100%;
+    will-change: transform;
+    transform: translateX(0%);
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    pointer-events: none;
+    transition: transform 8s ease;
+}
+
+.carousel-slide.active img {
+    transform: scale(1.04);
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.25s, border-color 0.25s, transform 0.2s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.carousel-btn:hover {
+    background: rgba(0,0,0,0.7);
+    border-color: rgba(255,255,255,0.65);
+    transform: translateY(-50%) scale(1.08);
+}
+
+.carousel-btn-prev { left: 24px; }
+.carousel-btn-next { right: 24px; }
+
+.carousel-dots {
+    position: absolute;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.6);
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s, transform 0.3s, width 0.35s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.carousel-dot.active {
+    background: #fff;
+    border-color: #fff;
+    width: 26px;
+    border-radius: 4px;
+    transform: none;
+}
+
+.carousel-counter {
+    position: absolute;
+    bottom: 20px;
+    right: 24px;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 1px;
+    z-index: 10;
+    font-family: var(--font-body);
+    line-height: 1;
+}
+
+@media (max-width: 768px) {
+    .cafe-carousel {
+        height: 55vw;
+        min-height: 260px;
+        max-height: 480px;
+    }
+
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .carousel-btn-prev { left: 12px; }
+    .carousel-btn-next { right: 12px; }
+
+    .carousel-counter { display: none; }
+}
+
+@media (max-width: 480px) {
+    .cafe-carousel {
+        height: 60vw;
+        min-height: 220px;
+    }
+
+    .carousel-btn { display: none; }
+}

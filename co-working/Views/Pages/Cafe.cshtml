@@ -46,6 +46,52 @@
             </div>
         </section>
 
+        <!-- Image Carousel -->
+        <section class="cafe-carousel-section">
+            <div class="cafe-carousel" id="cafeCarousel">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide">
+                        <img src="~/Images/cafeImg1.webp" alt="Brew &amp; Work Cafe" loading="eager" />
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="~/Images/cafeImg2.webp" alt="Brew &amp; Work Cafe" loading="lazy" />
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="~/Images/cafeImg3.webp" alt="Brew &amp; Work Cafe" loading="lazy" />
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="~/Images/cafeImg4.webp" alt="Brew &amp; Work Cafe" loading="lazy" />
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="~/Images/cafeImg5.webp" alt="Brew &amp; Work Cafe" loading="lazy" />
+                    </div>
+                </div>
+
+                <button class="carousel-btn carousel-btn-prev" id="carouselPrev" aria-label="Previous">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                </button>
+                <button class="carousel-btn carousel-btn-next" id="carouselNext" aria-label="Next">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                </button>
+
+                <div class="carousel-dots" id="carouselDots">
+                    <button class="carousel-dot active" data-index="0" aria-label="Slide 1"></button>
+                    <button class="carousel-dot" data-index="1" aria-label="Slide 2"></button>
+                    <button class="carousel-dot" data-index="2" aria-label="Slide 3"></button>
+                    <button class="carousel-dot" data-index="3" aria-label="Slide 4"></button>
+                    <button class="carousel-dot" data-index="4" aria-label="Slide 5"></button>
+                </div>
+
+                <div class="carousel-counter">
+                    <span id="carouselCurrent">1</span> / <span>5</span>
+                </div>
+            </div>
+        </section>
+
         <section class="section section-light">
             <div class="container">
                 <div class="section-header">
@@ -124,5 +170,93 @@
     <partial name="_Footer" />
 
     <script src="~/js/main.js"></script>
+    <script>
+        (function () {
+            const track = document.getElementById('carouselTrack');
+            const slides = track.querySelectorAll('.carousel-slide');
+            const dots = document.querySelectorAll('.carousel-dot');
+            const counter = document.getElementById('carouselCurrent');
+            const total = slides.length;
+            let current = 0;
+            let autoTimer = null;
+            let isAnimating = false;
+            let touchStartX = 0;
+            let touchDeltaX = 0;
+            let isDragging = false;
+
+            function goTo(index, direction) {
+                if (isAnimating) return;
+                isAnimating = true;
+
+                const prev = current;
+                current = (index + total) % total;
+
+                dots[prev].classList.remove('active');
+                dots[current].classList.add('active');
+                counter.textContent = current + 1;
+
+                track.style.transition = 'transform 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                track.style.transform = 'translateX(-' + (current * 100) + '%)';
+
+                setTimeout(function () { isAnimating = false; }, 780);
+            }
+
+            function next() { goTo(current + 1); }
+            function prev() { goTo(current - 1); }
+
+            function startAuto() {
+                stopAuto();
+                autoTimer = setInterval(next, 4500);
+            }
+
+            function stopAuto() {
+                clearInterval(autoTimer);
+            }
+
+            document.getElementById('carouselNext').addEventListener('click', function () {
+                next(); startAuto();
+            });
+            document.getElementById('carouselPrev').addEventListener('click', function () {
+                prev(); startAuto();
+            });
+
+            dots.forEach(function (dot) {
+                dot.addEventListener('click', function () {
+                    goTo(parseInt(dot.dataset.index));
+                    startAuto();
+                });
+            });
+
+            track.addEventListener('touchstart', function (e) {
+                touchStartX = e.touches[0].clientX;
+                isDragging = true;
+                stopAuto();
+                track.style.transition = 'none';
+            }, { passive: true });
+
+            track.addEventListener('touchmove', function (e) {
+                if (!isDragging) return;
+                touchDeltaX = e.touches[0].clientX - touchStartX;
+                const base = -(current * 100);
+                const drag = (touchDeltaX / track.parentElement.offsetWidth) * 100;
+                track.style.transform = 'translateX(calc(' + base + '% + ' + touchDeltaX + 'px))';
+            }, { passive: true });
+
+            track.addEventListener('touchend', function () {
+                isDragging = false;
+                if (touchDeltaX < -50) next();
+                else if (touchDeltaX > 50) prev();
+                else goTo(current);
+                touchDeltaX = 0;
+                startAuto();
+            });
+
+            const carousel = document.getElementById('cafeCarousel');
+            carousel.addEventListener('mouseenter', stopAuto);
+            carousel.addEventListener('mouseleave', startAuto);
+
+            startAuto();
+        })();
+    </script>
 </body>
 </html>
