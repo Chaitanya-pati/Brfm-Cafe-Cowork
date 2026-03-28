@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpClient();
 builder.Services.AddScoped<IEmailService, EmailService>();
 
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
