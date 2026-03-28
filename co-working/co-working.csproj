@@ -7,4 +7,8 @@
     <RootNamespace>co_working</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MailKit" Version="4.7.0" />
+  </ItemGroup>
+
 </Project>
