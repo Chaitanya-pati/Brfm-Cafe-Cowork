@@ -1,0 +1,159 @@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Brew &amp; Work</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/styles.css">
+    <link rel="stylesheet" href="~/css/pages.css">
+</head>
+<body class="cafe-body">
+    <header class="header header-solid">
+        <div class="header-container">
+            <a href="/" class="logo">
+                <span class="logo-icon">&#9827;</span>
+                <span class="logo-text">Brew &amp; Work</span>
+            </a>
+            <nav class="nav">
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a asp-controller="Pages" asp-action="Index" class="nav-link">Home</a></li>
+                    <li><a asp-controller="Pages" asp-action="Cafe" class="nav-link">Cafe</a></li>
+                    <li><a asp-controller="Pages" asp-action="Coworking" class="nav-link">Co-Working</a></li>
+                    <li><a href="/#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="policy-hero">
+            <div class="policy-hero-inner">
+                <h1>Privacy Policy</h1>
+                <p>Last updated: @DateTime.Now.ToString("MMMM d, yyyy")</p>
+            </div>
+        </section>
+
+        <section class="policy-body">
+            <div class="policy-container">
+
+                <div class="policy-intro">
+                    <p>At <strong>Brew &amp; Work</strong>, we respect your privacy. This policy explains what information we collect when you visit our website or use our space, how we use it, and your rights regarding that information. We keep things simple — we are a cafe and co-working space, not a data company.</p>
+                </div>
+
+                <div class="policy-section">
+                    <h2>1. Who We Are</h2>
+                    <p>Brew &amp; Work is a hybrid cafe and co-working space based in Belagavi, Karnataka, India. This website is operated solely to provide information about our services and to allow visitors to get in touch with us.</p>
+                </div>
+
+                <div class="policy-section">
+                    <h2>2. Information We Collect</h2>
+                    <p>We collect only what is necessary to respond to you or improve your experience on our site:</p>
+                    <ul>
+                        <li><strong>Contact information</strong> — if you reach out to us via our contact form or email, we collect your name, email address, and the message you send.</li>
+                        <li><strong>Usage data</strong> — standard web server logs may record your IP address, browser type, and the pages you visit. This data is not linked to any personal profile.</li>
+                        <li>We do <strong>not</strong> collect payment details, create user accounts, or build behavioural profiles of visitors.</li>
+                    </ul>
+                </div>
+
+                <div class="policy-section">
+                    <h2>3. How We Use Your Information</h2>
+                    <p>Any information we receive is used only to:</p>
+                    <ul>
+                        <li>Respond to your enquiries or booking requests.</li>
+                        <li>Improve the performance and content of this website.</li>
+                        <li>Comply with legal obligations where required.</li>
+                    </ul>
+                    <p>We do not use your information for marketing without your explicit consent, and we do not sell or share your data with third parties for commercial purposes.</p>
+                </div>
+
+                <div class="policy-section">
+                    <h2>4. Cookies</h2>
+                    <p>This website uses minimal cookies. We do not use advertising or tracking cookies. The only cookies that may be set are:</p>
+                    <ul>
+                        <li><strong>Session cookies</strong> — temporary cookies that expire when you close your browser, used to keep the site functioning correctly.</li>
+                        <li><strong>Google Fonts</strong> — we load fonts from Google's servers. Google may set its own cookies in accordance with <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's Privacy Policy</a>.</li>
+                    </ul>
+                    <p>You can control or disable cookies through your browser settings at any time.</p>
+                </div>
+
+                <div class="policy-section">
+                    <h2>5. Third-Party Services</h2>
+                    <p>Our website embeds the following third-party services, each governed by their own privacy policies:</p>
+                    <ul>
+                        <li><strong>Google Maps</strong> — used to display our location on the Contact page. When the map loads, Google may collect data per their <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>. The map is only loaded when you scroll to it.</li>
+                        <li><strong>Google Fonts</strong> — fonts are loaded from Google's CDN. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's Privacy Policy</a> for details.</li>
+                        <li><strong>Unsplash</strong> — some images are served via Unsplash's CDN. Unsplash may log standard request data per their <a href="https://unsplash.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.</li>
+                    </ul>
+                </div>
+
+                <div class="policy-section">
+                    <h2>6. Data Retention</h2>
+                    <p>Messages and enquiries sent through our contact form are retained only as long as necessary to respond to you and for a reasonable period afterwards. Server logs are retained for a short period for security and performance monitoring, then deleted.</p>
+                </div>
+
+                <div class="policy-section">
+                    <h2>7. Your Rights</h2>
+                    <p>Under applicable Indian law (including the Information Technology Act, 2000 and associated rules), you have the right to:</p>
+                    <ul>
+                        <li>Request access to any personal information we hold about you.</li>
+                        <li>Ask us to correct or delete your personal information.</li>
+                        <li>Withdraw consent for any processing based on your consent.</li>
+                    </ul>
+                    <p>To exercise any of these rights, please contact us using the details below.</p>
+                </div>
+
+                <div class="policy-section">
+                    <h2>8. Data Security</h2>
+                    <p>We take reasonable precautions to protect any information you share with us. However, no method of transmission over the internet is completely secure. We encourage you to avoid sharing sensitive personal details through our contact form.</p>
+                </div>
+
+                <div class="policy-section">
+                    <h2>9. Changes to This Policy</h2>
+                    <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated date at the top. We encourage you to review this page periodically.</p>
+                </div>
+
+                <div class="policy-section policy-contact">
+                    <h2>10. Contact Us</h2>
+                    <p>If you have any questions about this Privacy Policy or how we handle your data, please get in touch:</p>
+                    <div class="policy-contact-info">
+                        <p><strong>Brew &amp; Work</strong></p>
+                        <p>Belagavi, Karnataka, India</p>
+                        <p>Email: <a href="mailto:hello@brewandwork.in">hello@brewandwork.in</a></p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>&copy; @DateTime.Now.Year Brew &amp; Work. All rights reserved. &nbsp;|&nbsp; <a asp-controller="Pages" asp-action="PrivacyPolicy" class="footer-policy-link">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const toggle = document.querySelector('.nav-toggle');
+            const menu = document.querySelector('.nav-menu');
+            if (toggle && menu) {
+                toggle.addEventListener('click', function () {
+                    menu.classList.toggle('open');
+                    toggle.classList.toggle('open');
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
