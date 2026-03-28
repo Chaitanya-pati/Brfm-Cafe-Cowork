@@ -83,7 +83,7 @@
             </div>
 
             <div class="contact-form-wrapper">
-                <form class="contact-form">
+                <form class="contact-form" id="contactForm" novalidate>
                     <div class="form-group">
                         <label for="contact-name">Full Name</label>
                         <input type="text" id="contact-name" name="name" required placeholder="Your name">
@@ -116,15 +116,94 @@
                         <textarea id="contact-message" name="message" rows="4" placeholder="Tell us about your requirements..."></textarea>
                     </div>
 
-                    <button type="submit" class="submit-btn">
-                        Send Message
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <div class="form-feedback" id="formFeedback" aria-live="polite"></div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="btn-label">Send Message</span>
+                        <span class="btn-spinner" aria-hidden="true"></span>
+                        <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                             <line x1="22" y1="2" x2="11" y2="13" />
                             <polygon points="22 2 15 22 11 13 2 9 22 2" />
                         </svg>
                     </button>
                 </form>
+
+                <div class="form-success" id="formSuccess" style="display:none;">
+                    <div class="form-success-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                    </div>
+                    <h3>Message Sent!</h3>
+                    <p>Thank you for reaching out. We've sent a confirmation to your email and will be in touch within 24 hours.</p>
+                </div>
             </div>
+
+            <script>
+                (function () {
+                    var form = document.getElementById('contactForm');
+                    var btn = document.getElementById('submitBtn');
+                    var feedback = document.getElementById('formFeedback');
+                    var successBox = document.getElementById('formSuccess');
+
+                    form.addEventListener('submit', function (e) {
+                        e.preventDefault();
+
+                        var name = document.getElementById('contact-name').value.trim();
+                        var email = document.getElementById('contact-email').value.trim();
+                        var interest = document.getElementById('contact-interest').value;
+
+                        if (!name || !email || !interest) {
+                            showFeedback('Please fill in all required fields.', 'error');
+                            return;
+                        }
+
+                        setLoading(true);
+                        clearFeedback();
+
+                        fetch('/api/Contact/send', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                name: name,
+                                email: email,
+                                phone: document.getElementById('contact-phone').value.trim(),
+                                interest: interest,
+                                message: document.getElementById('contact-message').value.trim()
+                            })
+                        })
+                        .then(function (res) { return res.json(); })
+                        .then(function (data) {
+                            setLoading(false);
+                            if (data.success) {
+                                form.style.display = 'none';
+                                successBox.style.display = 'flex';
+                            } else {
+                                showFeedback(data.message || 'Something went wrong. Please try again.', 'error');
+                            }
+                        })
+                        .catch(function () {
+                            setLoading(false);
+                            showFeedback('Unable to send your message. Please try calling us directly.', 'error');
+                        });
+                    });
+
+                    function setLoading(loading) {
+                        btn.disabled = loading;
+                        btn.classList.toggle('loading', loading);
+                    }
+
+                    function showFeedback(msg, type) {
+                        feedback.textContent = msg;
+                        feedback.className = 'form-feedback form-feedback--' + type;
+                    }
+
+                    function clearFeedback() {
+                        feedback.textContent = '';
+                        feedback.className = 'form-feedback';
+                    }
+                })();
+            </script>
         </div>
 
         <div class="contact-map" id="mapContainer">

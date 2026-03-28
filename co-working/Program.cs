@@ -1,8 +1,10 @@
+using co_working.Services;
 using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
