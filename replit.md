@@ -9,9 +9,10 @@ A .NET 8.0 ASP.NET Core MVC website for a cafe and co-working space business cal
     - `HomeController.cs` - Default home controller
     - `PagesController.cs` - Main pages (Index, Cafe, Coworking, Privacy)
     - `ContactController.cs` - Contact form → email via Microsoft Graph API
-    - `ChatController.cs` - AI chatbot endpoint via Replit AI Integrations (OpenAI)
+    - `ChatController.cs` - AI chatbot endpoint (delegates to LocalChatService)
   - **Services/** - Business logic
     - `EmailService.cs` - Sends emails using Microsoft Graph API (client credentials flow)
+    - `ChatService.cs` - Custom, fully self-contained AI chatbot (no external APIs) — score-based knowledge engine
   - **Models/** - Data models for cafe menu and co-working plans
   - **Views/** - Razor views
     - `Pages/` - Index, Cafe, Coworking, PrivacyPolicy (all use `Layout = null`)
@@ -36,14 +37,22 @@ cd co-working && dotnet run
 - Bootstrap (via wwwroot/lib)
 - jQuery and jQuery Validation
 - MailKit (removed — now using Microsoft Graph API for email)
-- Replit AI Integrations (OpenAI-compatible) for the chatbot
+- Custom score-based AI knowledge engine (no external API)
 
 ## Features
 - **Home page** — Split-panel hero (cafe + co-working), contact form
 - **Cafe page** — Full menu, specials, amenities
 - **Co-Working page** — Plans, pricing, amenities
 - **Contact form** — Sends internal notification + confirmation email via Microsoft Graph
-- **AI Chat Widget** — Floating chat button on all pages; answers questions about menu, prices, timings, location, and plans using an AI trained on all site data
+- **AI Chat Widget** — Floating chat button on all pages; answers questions about menu, prices, timings, location, workspace plans, and meeting room using the custom LocalChatService
+- **Meeting / Conference Room** — Listed in co-working knowledge, timings response, and chat fallback; bookable by phone
+
+## Chat Engine — How it works
+`LocalChatService` (singleton) uses a scored knowledge base:
+1. Named menu item lookup first (e.g. "how much is affogato?" → exact price)
+2. Each `KnowledgeEntry` has StrongPhrases (+3 pts), Keywords (+1 pt), Blockers (disqualify)
+3. All entries scored; highest scorer above MinScore wins
+4. Responses array — multiple variants chosen randomly for variety
 
 ## Environment Variables
 | Variable | Purpose |
@@ -51,8 +60,6 @@ cd co-working && dotnet run
 | `GRAPH_TENANT_ID` | Microsoft Entra/Azure AD tenant ID |
 | `GRAPH_CLIENT_ID` | Azure app registration client ID |
 | `GRAPH_CLIENT_SECRET` | Azure app registration client secret |
-| `AI_INTEGRATIONS_OPENAI_BASE_URL` | Replit AI Integrations base URL (auto-set) |
-| `AI_INTEGRATIONS_OPENAI_API_KEY` | Replit AI Integrations API key (auto-set) |
 
 ## Configuration
 - `appsettings.json` - Graph email settings (SenderEmail, ToEmail, FromName)
