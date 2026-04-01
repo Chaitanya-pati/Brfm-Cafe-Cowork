@@ -1,4 +1,4 @@
-modules = ["web", "dotnet-7.0", "nodejs-20"]
+modules = ["web", "dotnet-7.0", "nodejs-20", "dotnet-8.0"]
 [agent]
 expertMode = true
 
@@ -37,3 +37,10 @@ externalPort = 80
 deploymentTarget = "autoscale"
 run = ["dotnet", "publish/co-working.dll", "--urls", "http://0.0.0.0:5000"]
 build = ["dotnet", "publish", "-c", "Release", "-o", "publish", "co-working/co-working.csproj"]
+
+[userenv]
+
+[userenv.shared]
+GRAPH_CLIENT_ID = "016d365f-bc15-46bf-9c58-3df5f69015dd"
+GRAPH_TENANT_ID = "e4329e91-779a-4be6-978c-d5f22a5ab22d"
+GRAPH_CLIENT_SECRET = "G168Q~FXqjDwNhx7nac~otX5sdDEBMRAiBgOjdeT"
