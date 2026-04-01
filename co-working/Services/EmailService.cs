@@ -9,6 +9,7 @@ namespace co_working.Services
     {
         public string TenantId { get; set; } = "";
         public string ClientId { get; set; } = "";
+        public string ClientSecret { get; set; } = "";
         public string SenderEmail { get; set; } = "";
         public string ToEmail { get; set; } = "";
         public string FromName { get; set; } = "";
@@ -38,9 +39,7 @@ namespace co_working.Services
         public EmailService(IConfiguration config, IHttpClientFactory httpClientFactory, ILogger<EmailService> logger)
         {
             _graph = config.GetSection("Graph").Get<GraphSettings>() ?? new GraphSettings();
-            _graph.TenantId = Environment.GetEnvironmentVariable("GRAPH_TENANT_ID") ?? "";
-            _graph.ClientId = Environment.GetEnvironmentVariable("GRAPH_CLIENT_ID") ?? "";
-            _clientSecret   = Environment.GetEnvironmentVariable("GRAPH_CLIENT_SECRET") ?? "";
+            _clientSecret = _graph.ClientSecret;
             _http = httpClientFactory.CreateClient();
             _logger = logger;
         }
