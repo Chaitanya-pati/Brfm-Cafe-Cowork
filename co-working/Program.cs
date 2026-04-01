@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddSingleton<IChatService, LocalChatService>();
 
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
