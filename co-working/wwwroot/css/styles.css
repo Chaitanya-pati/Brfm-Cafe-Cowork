@@ -114,11 +114,14 @@ body {
 .nav-toggle {
     display: none;
     flex-direction: column;
+    justify-content: center;
     gap: 5px;
     background: none;
     border: none;
     cursor: pointer;
     padding: 8px;
+    z-index: 1100;
+    position: relative;
 }
 
 .nav-toggle span {
@@ -126,7 +129,43 @@ body {
     width: 24px;
     height: 2px;
     background: #fff;
-    transition: var(--transition-fast);
+    border-radius: 2px;
+    transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+                opacity 0.25s ease,
+                width 0.3s ease;
+    transform-origin: center;
+}
+
+.nav-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+    width: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 900;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(2px);
+}
+
+.nav-overlay.active {
+    opacity: 1;
+}
+
+body.menu-open {
+    overflow: hidden;
 }
 
 .btn {
@@ -267,20 +306,42 @@ body {
 @media (max-width: 768px) {
     .nav-toggle { display: flex; }
 
+    .nav-overlay { display: block; }
+
     .nav-menu {
         position: fixed;
-        top: 70px;
+        top: 0;
         right: -100%;
         width: 280px;
-        height: calc(100vh - 70px);
-        background: rgba(0,0,0,0.97);
-        backdrop-filter: blur(12px);
+        height: 100vh;
+        background: rgba(10, 10, 10, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         flex-direction: column;
-        padding: 30px;
-        gap: 25px;
+        padding: 90px 30px 30px;
+        gap: 8px;
         align-items: flex-start;
-        transition: right 0.3s ease;
-        border-left: 1px solid rgba(255,255,255,0.08);
+        transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        border-left: 1px solid rgba(255,255,255,0.07);
+        z-index: 1000;
+        box-shadow: -8px 0 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-menu li {
+        width: 100%;
+    }
+
+    .nav-menu .nav-link {
+        font-size: 17px;
+        font-weight: 500;
+        padding: 14px 0;
+        display: block;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        letter-spacing: 0.3px;
+    }
+
+    .nav-menu .nav-link.active::after {
+        display: none;
     }
 
     .nav-menu.active { right: 0; }
