@@ -54,6 +54,16 @@ cd co-working && dotnet run
 3. All entries scored; highest scorer above MinScore wins
 4. Responses array — multiple variants chosen randomly for variety
 
+## Email Logging
+Every contact form submission is logged to `co-working/Data/email-logs.json` regardless of whether the email sends successfully or fails. Each log entry contains:
+- `id` — unique UUID
+- `timestamp` — UTC time of the attempt
+- `status` — `"success"` or `"failed"`
+- `name`, `email`, `phone`, `interest`, `message` — form data
+- `error` — error message if status is `"failed"`, otherwise null
+
+Logging is handled by `EmailLogService` (singleton) using a semaphore lock for safe concurrent writes.
+
 ## Environment Variables
 | Variable | Purpose |
 |---|---|

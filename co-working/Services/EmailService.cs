@@ -2,6 +2,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Web;
+using co_working.Models;
 
 namespace co_working.Services
 {
@@ -35,20 +36,45 @@ namespace co_working.Services
         private readonly string _clientSecret;
         private readonly HttpClient _http;
         private readonly ILogger<EmailService> _logger;
+        private readonly IEmailLogService _emailLog;
 
-        public EmailService(IConfiguration config, IHttpClientFactory httpClientFactory, ILogger<EmailService> logger)
+        public EmailService(IConfiguration config, IHttpClientFactory httpClientFactory, ILogger<EmailService> logger, IEmailLogService emailLog)
         {
             _graph = config.GetSection("Graph").Get<GraphSettings>() ?? new GraphSettings();
             _clientSecret = _graph.ClientSecret;
             _http = httpClientFactory.CreateClient();
             _logger = logger;
+            _emailLog = emailLog;
         }
 
         public async Task SendContactEmailsAsync(ContactFormData form)
         {
-            var token = await GetAccessTokenAsync();
-            await SendInternalNotificationAsync(form, token);
-            await SendConfirmationToSenderAsync(form, token);
+            var entry = new EmailLogEntry
+            {
+                Name     = form.Name,
+                Email    = form.Email,
+                Phone    = form.Phone,
+                Interest = form.Interest,
+                Message  = form.Message
+            };
+
+            try
+            {
+                var token = await GetAccessTokenAsync();
+                await SendInternalNotificationAsync(form, token);
+                await SendConfirmationToSenderAsync(form, token);
+                entry.Status = "success";
+            }
+            catch (Exception ex)
+            {
+                entry.Status = "failed";
+                entry.Error  = ex.Message;
+                throw;
+            }
+            finally
+            {
+                await _emailLog.AppendAsync(entry);
+            }
         }
 
         private async Task<string> GetAccessTokenAsync()
