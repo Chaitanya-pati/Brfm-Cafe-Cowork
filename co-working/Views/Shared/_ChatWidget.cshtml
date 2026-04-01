@@ -1,0 +1,398 @@
+<!-- Brew & Work AI Chat Widget -->
+<style>
+    /* === Chat Launcher Button === */
+    .bw-chat-launcher {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        z-index: 9999;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: #fff;
+        color: #000;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .bw-chat-launcher:hover {
+        transform: scale(1.08);
+        box-shadow: 0 6px 28px rgba(0,0,0,0.5);
+    }
+    .bw-chat-launcher svg { transition: opacity 0.15s ease; }
+
+    /* === Chat Window === */
+    .bw-chat-window {
+        position: fixed;
+        bottom: 96px;
+        right: 28px;
+        z-index: 9998;
+        width: 360px;
+        max-height: 520px;
+        background: #111;
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 12px 48px rgba(0,0,0,0.6);
+        transform: translateY(12px) scale(0.97);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+        overflow: hidden;
+    }
+    .bw-chat-window.open {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    /* === Header === */
+    .bw-chat-header {
+        background: #000;
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        flex-shrink: 0;
+    }
+    .bw-chat-header-icon {
+        width: 36px;
+        height: 36px;
+        background: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        flex-shrink: 0;
+    }
+    .bw-chat-header-info { flex: 1; }
+    .bw-chat-header-name {
+        font-family: 'Libre Baskerville', Georgia, serif;
+        font-size: 14px;
+        color: #fff;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+    .bw-chat-header-status {
+        font-size: 11px;
+        color: rgba(255,255,255,0.45);
+        margin-top: 2px;
+    }
+    .bw-chat-close {
+        background: none;
+        border: none;
+        color: rgba(255,255,255,0.4);
+        cursor: pointer;
+        padding: 4px;
+        line-height: 1;
+        transition: color 0.15s;
+    }
+    .bw-chat-close:hover { color: #fff; }
+
+    /* === Messages === */
+    .bw-chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 16px 16px 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        scroll-behavior: smooth;
+    }
+    .bw-chat-messages::-webkit-scrollbar { width: 4px; }
+    .bw-chat-messages::-webkit-scrollbar-track { background: transparent; }
+    .bw-chat-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 4px; }
+
+    .bw-msg {
+        max-width: 82%;
+        font-size: 13.5px;
+        line-height: 1.55;
+        padding: 10px 14px;
+        border-radius: 14px;
+        word-break: break-word;
+    }
+    .bw-msg-bot {
+        background: rgba(255,255,255,0.07);
+        color: rgba(255,255,255,0.9);
+        align-self: flex-start;
+        border-bottom-left-radius: 4px;
+    }
+    .bw-msg-user {
+        background: #fff;
+        color: #000;
+        align-self: flex-end;
+        border-bottom-right-radius: 4px;
+    }
+
+    /* Typing indicator */
+    .bw-typing {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        align-self: flex-start;
+        padding: 10px 14px;
+        background: rgba(255,255,255,0.07);
+        border-radius: 14px;
+        border-bottom-left-radius: 4px;
+    }
+    .bw-typing span {
+        width: 6px;
+        height: 6px;
+        background: rgba(255,255,255,0.45);
+        border-radius: 50%;
+        animation: bwBounce 1.2s infinite;
+    }
+    .bw-typing span:nth-child(2) { animation-delay: 0.2s; }
+    .bw-typing span:nth-child(3) { animation-delay: 0.4s; }
+    @@keyframes bwBounce {
+        0%, 60%, 100% { transform: translateY(0); }
+        30% { transform: translateY(-5px); }
+    }
+
+    /* === Suggestions === */
+    .bw-suggestions {
+        padding: 0 16px 8px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    .bw-suggestion {
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.12);
+        color: rgba(255,255,255,0.7);
+        border-radius: 20px;
+        padding: 5px 12px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: background 0.15s, color 0.15s;
+        white-space: nowrap;
+    }
+    .bw-suggestion:hover {
+        background: rgba(255,255,255,0.12);
+        color: #fff;
+    }
+
+    /* === Input Area === */
+    .bw-chat-input-area {
+        padding: 12px 16px 16px;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        display: flex;
+        gap: 10px;
+        align-items: flex-end;
+        flex-shrink: 0;
+    }
+    .bw-chat-input {
+        flex: 1;
+        background: rgba(255,255,255,0.07);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 10px;
+        color: #fff;
+        font-size: 13.5px;
+        padding: 9px 13px;
+        resize: none;
+        outline: none;
+        line-height: 1.45;
+        max-height: 100px;
+        font-family: inherit;
+        transition: border-color 0.15s;
+    }
+    .bw-chat-input::placeholder { color: rgba(255,255,255,0.3); }
+    .bw-chat-input:focus { border-color: rgba(255,255,255,0.3); }
+    .bw-chat-send {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: #fff;
+        color: #000;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: opacity 0.15s;
+    }
+    .bw-chat-send:disabled { opacity: 0.4; cursor: not-allowed; }
+    .bw-chat-send:not(:disabled):hover { opacity: 0.85; }
+
+    @@media (max-width: 480px) {
+        .bw-chat-window { width: calc(100vw - 32px); right: 16px; }
+        .bw-chat-launcher { right: 16px; bottom: 20px; }
+    }
+</style>
+
+<!-- Launcher Button -->
+<button class="bw-chat-launcher" id="bwChatLauncher" aria-label="Open chat">
+    <svg id="bwIconChat" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+    <svg id="bwIconClose" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="display:none">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+</button>
+
+<!-- Chat Window -->
+<div class="bw-chat-window" id="bwChatWindow">
+    <div class="bw-chat-header">
+        <div class="bw-chat-header-icon">&#9827;</div>
+        <div class="bw-chat-header-info">
+            <div class="bw-chat-header-name">Brew &amp; Work Assistant</div>
+            <div class="bw-chat-header-status">Ask me anything about our cafe &amp; space</div>
+        </div>
+        <button class="bw-chat-close" id="bwChatClose" aria-label="Close chat">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+        </button>
+    </div>
+
+    <div class="bw-chat-messages" id="bwMessages">
+        <div class="bw-msg bw-msg-bot">
+            Hi! I'm the Brew &amp; Work assistant ☕<br>Ask me about our menu, prices, co-working plans, timings, or anything else!
+        </div>
+    </div>
+
+    <div class="bw-suggestions" id="bwSuggestions">
+        <button class="bw-suggestion">Do you have black coffee?</button>
+        <button class="bw-suggestion">What are your timings?</button>
+        <button class="bw-suggestion">Hot desk price?</button>
+        <button class="bw-suggestion">Where are you located?</button>
+    </div>
+
+    <div class="bw-chat-input-area">
+        <textarea class="bw-chat-input" id="bwInput" placeholder="Type your question..." rows="1"></textarea>
+        <button class="bw-chat-send" id="bwSend" aria-label="Send">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+        </button>
+    </div>
+</div>
+
+<script>
+(function () {
+    const launcher  = document.getElementById('bwChatLauncher');
+    const window_   = document.getElementById('bwChatWindow');
+    const closeBtn  = document.getElementById('bwChatClose');
+    const input     = document.getElementById('bwInput');
+    const sendBtn   = document.getElementById('bwSend');
+    const messages  = document.getElementById('bwMessages');
+    const suggestEl = document.getElementById('bwSuggestions');
+    const iconChat  = document.getElementById('bwIconChat');
+    const iconClose = document.getElementById('bwIconClose');
+
+    let isOpen    = false;
+    let isLoading = false;
+    let history   = [];
+
+    function toggleChat() {
+        isOpen = !isOpen;
+        window_.classList.toggle('open', isOpen);
+        iconChat.style.display  = isOpen ? 'none' : '';
+        iconClose.style.display = isOpen ? '' : 'none';
+        if (isOpen) setTimeout(() => input.focus(), 250);
+    }
+
+    launcher.addEventListener('click', toggleChat);
+    closeBtn.addEventListener('click', toggleChat);
+
+    // Suggestions
+    suggestEl.querySelectorAll('.bw-suggestion').forEach(btn => {
+        btn.addEventListener('click', () => {
+            input.value = btn.textContent;
+            suggestEl.style.display = 'none';
+            sendMessage();
+        });
+    });
+
+    // Auto-grow textarea
+    input.addEventListener('input', () => {
+        input.style.height = 'auto';
+        input.style.height = Math.min(input.scrollHeight, 100) + 'px';
+    });
+
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
+    });
+
+    sendBtn.addEventListener('click', sendMessage);
+
+    function appendMsg(role, text) {
+        const div = document.createElement('div');
+        div.className = 'bw-msg ' + (role === 'user' ? 'bw-msg-user' : 'bw-msg-bot');
+        div.textContent = text;
+        messages.appendChild(div);
+        messages.scrollTop = messages.scrollHeight;
+        return div;
+    }
+
+    function showTyping() {
+        const el = document.createElement('div');
+        el.className = 'bw-typing';
+        el.id = 'bwTyping';
+        el.innerHTML = '<span></span><span></span><span></span>';
+        messages.appendChild(el);
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    function hideTyping() {
+        const el = document.getElementById('bwTyping');
+        if (el) el.remove();
+    }
+
+    async function sendMessage() {
+        const text = input.value.trim();
+        if (!text || isLoading) return;
+
+        suggestEl.style.display = 'none';
+        isLoading = true;
+        sendBtn.disabled = true;
+
+        appendMsg('user', text);
+        input.value = '';
+        input.style.height = 'auto';
+
+        showTyping();
+
+        try {
+            const res = await fetch('/api/Chat/send', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: text, history })
+            });
+
+            hideTyping();
+
+            if (!res.ok) throw new Error('Request failed');
+
+            const data = await res.json();
+            const reply = data.reply || 'Sorry, I could not process that.';
+
+            appendMsg('bot', reply);
+
+            history.push({ role: 'user', content: text });
+            history.push({ role: 'assistant', content: reply });
+
+            if (history.length > 20) history = history.slice(-20);
+
+        } catch (err) {
+            hideTyping();
+            appendMsg('bot', 'Sorry, something went wrong. Please try again or call us at +91 99225 57733.');
+        }
+
+        isLoading = false;
+        sendBtn.disabled = false;
+        input.focus();
+    }
+})();
+</script>
