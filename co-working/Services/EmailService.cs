@@ -246,7 +246,10 @@ namespace co_working.Services
         private async Task SendViaGraphAsync(string token, object payload)
         {
             var url = $"https://graph.microsoft.com/v1.0/users/{_graph.SenderEmail}/sendMail";
-            var json = JsonSerializer.Serialize(payload);
+            var json = JsonSerializer.Serialize(payload, new JsonSerializerOptions
+            {
+                DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
+            });
             var req = new HttpRequestMessage(HttpMethod.Post, url)
             {
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
