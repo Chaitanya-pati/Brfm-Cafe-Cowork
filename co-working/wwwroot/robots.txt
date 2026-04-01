@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://brewandwork.in/sitemap.xml
