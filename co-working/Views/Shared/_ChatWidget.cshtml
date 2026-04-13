@@ -18,10 +18,14 @@
         justify-content: center;
         box-shadow: 0 4px 20px rgba(0,0,0,0.4);
         transition: transform 0.2s ease, box-shadow 0.2s ease;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
     }
-    .bw-chat-launcher:hover {
-        transform: scale(1.08);
-        box-shadow: 0 6px 28px rgba(0,0,0,0.5);
+    @@media (hover: hover) {
+        .bw-chat-launcher:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 28px rgba(0,0,0,0.5);
+        }
     }
     .bw-chat-launcher svg { transition: opacity 0.15s ease; }
 
@@ -147,15 +151,20 @@
         border: 1px solid rgba(255,255,255,0.12);
         color: rgba(255,255,255,0.7);
         border-radius: 20px;
-        padding: 5px 12px;
+        padding: 8px 14px;
         font-size: 12px;
         cursor: pointer;
         transition: background 0.15s, color 0.15s;
         white-space: nowrap;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+        min-height: 36px;
     }
-    .bw-suggestion:hover {
-        background: rgba(255,255,255,0.12);
-        color: #fff;
+    @@media (hover: hover) {
+        .bw-suggestion:hover {
+            background: rgba(255,255,255,0.12);
+            color: #fff;
+        }
     }
 
     /* === Input Area === */
@@ -185,8 +194,8 @@
     .bw-chat-input::placeholder { color: rgba(255,255,255,0.3); }
     .bw-chat-input:focus { border-color: rgba(255,255,255,0.3); }
     .bw-chat-send {
-        width: 36px;
-        height: 36px;
+        width: 44px;
+        height: 44px;
         border-radius: 8px;
         background: #fff;
         color: #000;
@@ -197,9 +206,13 @@
         justify-content: center;
         flex-shrink: 0;
         transition: opacity 0.15s;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
     }
     .bw-chat-send:disabled { opacity: 0.4; cursor: not-allowed; }
-    .bw-chat-send:not(:disabled):hover { opacity: 0.85; }
+    @@media (hover: hover) {
+        .bw-chat-send:not(:disabled):hover { opacity: 0.85; }
+    }
 
     @@media (max-width: 480px) {
         .bw-chat-window { width: calc(100vw - 32px); right: 16px; }

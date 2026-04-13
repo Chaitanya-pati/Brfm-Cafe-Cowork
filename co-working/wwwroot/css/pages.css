@@ -112,9 +112,11 @@
     transition: var(--transition-medium);
 }
 
-.glass-card:hover {
-    background: rgba(255,255,255,0.06);
-    transform: translateY(-4px);
+@media (hover: hover) {
+    .glass-card:hover {
+        background: rgba(255,255,255,0.06);
+        transform: translateY(-4px);
+    }
 }
 
 /* ── Menu ── */
@@ -132,9 +134,11 @@
     transition: var(--transition-medium);
 }
 
-.menu-category:hover {
-    background: rgba(255,255,255,0.06);
-    transform: translateY(-4px);
+@media (hover: hover) {
+    .menu-category:hover {
+        background: rgba(255,255,255,0.06);
+        transform: translateY(-4px);
+    }
 }
 
 .menu-icon {
@@ -289,9 +293,11 @@
     transition: var(--transition-medium);
 }
 
-.amenity-card:hover {
-    background: rgba(255,255,255,0.07);
-    transform: translateY(-5px);
+@media (hover: hover) {
+    .amenity-card:hover {
+        background: rgba(255,255,255,0.07);
+        transform: translateY(-5px);
+    }
 }
 
 .amenity-icon {
@@ -638,11 +644,16 @@
     text-decoration: none;
     transition: all 0.3s ease;
     letter-spacing: 0.3px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 48px;
 }
 
-.btn-outline-light:hover {
-    background: rgba(255,255,255,0.08);
-    border-color: rgba(255,255,255,0.6);
+@media (hover: hover) {
+    .btn-outline-light:hover {
+        background: rgba(255,255,255,0.08);
+        border-color: rgba(255,255,255,0.6);
+    }
 }
 
 /* ── Contact Section ── */
@@ -700,10 +711,15 @@
     cursor: pointer;
     gap: 12px;
     transition: background 0.25s;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
 }
 
-.map-placeholder:hover {
-    background: rgba(255,255,255,0.06);
+@media (hover: hover) {
+    .map-placeholder:hover {
+        background: rgba(255,255,255,0.06);
+    }
 }
 
 .map-placeholder svg {
@@ -788,8 +804,8 @@
 }
 
 .social-link {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     border-radius: 8px;
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.09);
@@ -799,13 +815,17 @@
     color: rgba(255,255,255,0.6);
     text-decoration: none;
     transition: all 0.3s;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.social-link:hover {
-    background: rgba(255,255,255,0.09);
-    border-color: rgba(255,255,255,0.2);
-    color: #fff;
-    transform: translateY(-2px);
+@media (hover: hover) {
+    .social-link:hover {
+        background: rgba(255,255,255,0.09);
+        border-color: rgba(255,255,255,0.2);
+        color: #fff;
+        transform: translateY(-2px);
+    }
 }
 
 .social-link svg { width: 18px; height: 18px; }
@@ -847,9 +867,13 @@
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: 8px;
     color: #fff;
-    font-size: 14px;
+    font-size: 16px;
     font-family: var(--font-body);
     transition: all 0.3s;
+    -webkit-appearance: none;
+    appearance: none;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .form-group input:focus,
@@ -863,6 +887,13 @@
 .form-group input::placeholder,
 .form-group textarea::placeholder {
     color: rgba(255,255,255,0.25);
+}
+
+.form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.45)' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 38px;
 }
 
 .form-group select option {
@@ -885,18 +916,23 @@
     color: #000;
     border: none;
     border-radius: 8px;
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 700;
     letter-spacing: 0.5px;
     cursor: pointer;
     transition: all 0.3s;
     margin-top: 6px;
     font-family: var(--font-body);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 48px;
 }
 
-.submit-btn:hover {
-    background: rgba(255,255,255,0.9);
-    transform: translateY(-2px);
+@media (hover: hover) {
+    .submit-btn:hover {
+        background: rgba(255,255,255,0.9);
+        transform: translateY(-2px);
+    }
 }
 
 /* ── Responsive ── */
@@ -1026,6 +1062,7 @@
     cursor: pointer;
     transition: background 0.22s ease, transform 0.22s ease;
     -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
     outline: none;
 }
 
@@ -1066,7 +1103,13 @@
     padding: 0;
     transition: background 0.3s, width 0.35s cubic-bezier(0.4,0,0.2,1), border-radius 0.35s;
     -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
     outline: none;
+    min-width: 20px;
+    min-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .carousel-dot.active {

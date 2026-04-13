@@ -94,6 +94,8 @@ body {
     position: relative;
     padding-bottom: 4px;
     transition: color 0.3s ease;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .nav-link:hover,
@@ -122,6 +124,8 @@ body {
     padding: 8px;
     z-index: 1100;
     position: relative;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .nav-toggle span {
@@ -158,10 +162,13 @@ body {
     opacity: 0;
     transition: opacity 0.3s ease;
     backdrop-filter: blur(2px);
+    pointer-events: none;
 }
 
 .nav-overlay.active {
     opacity: 1;
+    pointer-events: auto;
+    cursor: pointer;
 }
 
 body.menu-open {
@@ -181,6 +188,8 @@ body.menu-open {
     transition: var(--transition-medium);
     cursor: pointer;
     border: none;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .btn-cafe {

@@ -32,6 +32,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         overlay.addEventListener('click', closeMenu);
+        overlay.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            closeMenu();
+        });
 
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', closeMenu);
