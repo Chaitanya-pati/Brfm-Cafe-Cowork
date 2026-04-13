@@ -148,6 +148,8 @@
             letter-spacing: 0.5px;
             transition: color 0.3s ease;
             position: relative;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
 
             .nav-link:hover,
@@ -176,6 +178,8 @@
             padding: 8px;
             z-index: 1100;
             position: relative;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
 
             .nav-toggle span {
@@ -212,10 +216,13 @@
             opacity: 0;
             transition: opacity 0.3s ease;
             backdrop-filter: blur(2px);
+            pointer-events: none;
         }
 
         .nav-overlay.active {
             opacity: 1;
+            pointer-events: auto;
+            cursor: pointer;
         }
 
         body.menu-open {
@@ -376,19 +383,24 @@
             color: #fff;
             transition: all 0.3s ease;
             margin-bottom: 50px;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            min-height: 44px;
         }
 
-            .cta:hover {
-                padding-left: 10px;
-                border-bottom-color: #fff;
+            @@media (hover: hover) {
+                .cta:hover {
+                    padding-left: 10px;
+                    border-bottom-color: #fff;
+                }
+
+                .cta:hover svg {
+                    transform: translateX(5px);
+                }
             }
 
             .cta svg {
                 transition: transform 0.3s ease;
-            }
-
-            .cta:hover svg {
-                transform: translateX(5px);
             }
 
         /* Footer */
@@ -682,13 +694,17 @@
             justify-content: center;
             color: rgba(255, 255, 255, 0.7);
             transition: all 0.3s ease;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
 
-            .social-link:hover {
-                background: rgba(255, 255, 255, 0.1);
-                border-color: rgba(255, 255, 255, 0.2);
-                color: #fff;
-                transform: translateY(-2px);
+            @@media (hover: hover) {
+                .social-link:hover {
+                    background: rgba(255, 255, 255, 0.1);
+                    border-color: rgba(255, 255, 255, 0.2);
+                    color: #fff;
+                    transform: translateY(-2px);
+                }
             }
 
             .social-link svg {
@@ -733,9 +749,13 @@
                 border: 1px solid rgba(255, 255, 255, 0.12);
                 border-radius: 8px;
                 color: #fff;
-                font-size: 14px;
+                font-size: 16px;
                 font-family: 'Inter', sans-serif;
                 transition: all 0.3s ease;
+                -webkit-appearance: none;
+                appearance: none;
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
             }
 
                 .form-group input:focus,
@@ -753,6 +773,10 @@
 
             .form-group select {
                 cursor: pointer;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.45)' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-position: right 14px center;
+                padding-right: 40px;
             }
 
                 .form-group select option {
@@ -775,18 +799,23 @@
             color: #000;
             border: none;
             border-radius: 8px;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 600;
             letter-spacing: 0.5px;
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 10px;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            min-height: 48px;
         }
 
-            .submit-btn:hover {
-                background: rgba(255, 255, 255, 0.9);
-                transform: translateY(-2px);
-                box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+            @@media (hover: hover) {
+                .submit-btn:hover {
+                    background: rgba(255, 255, 255, 0.9);
+                    transform: translateY(-2px);
+                    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+                }
             }
 
             .submit-btn svg {
