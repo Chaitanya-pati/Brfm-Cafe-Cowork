@@ -78,6 +78,12 @@
 
             <div class="contact-form-wrapper">
                 <form class="contact-form" id="contactForm" novalidate>
+                    <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;pointer-events:none;" aria-hidden="true" tabindex="-1">
+                        <label for="contact-website">Website (leave blank)</label>
+                        <input type="text" id="contact-website" name="website" autocomplete="off" tabindex="-1">
+                    </div>
+                    <input type="hidden" id="formLoadTime" name="formLoadTime" value="0">
+
                     <div class="form-group">
                         <label for="contact-name">Full Name</label>
                         <input type="text" id="contact-name" name="name" required placeholder="Your name">
@@ -140,6 +146,8 @@
                     var feedback = document.getElementById('formFeedback');
                     var successBox = document.getElementById('formSuccess');
 
+                    document.getElementById('formLoadTime').value = Date.now();
+
                     form.addEventListener('submit', function (e) {
                         e.preventDefault();
 
@@ -163,7 +171,9 @@
                                 email: email,
                                 phone: document.getElementById('contact-phone').value.trim(),
                                 interest: interest,
-                                message: document.getElementById('contact-message').value.trim()
+                                message: document.getElementById('contact-message').value.trim(),
+                                honeypot: document.getElementById('contact-website').value,
+                                formLoadTime: parseInt(document.getElementById('formLoadTime').value, 10) || 0
                             })
                         })
                         .then(function (res) { return res.json(); })

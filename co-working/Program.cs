@@ -8,6 +8,7 @@ builder.Services.AddHttpClient();
 builder.Services.AddSingleton<IEmailLogService, EmailLogService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddSingleton<IChatService, LocalChatService>();
+builder.Services.AddSingleton<ISpamProtectionService, SpamProtectionService>();
 
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {

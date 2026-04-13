@@ -23,6 +23,8 @@ namespace co_working.Services
         public string Phone { get; set; } = "";
         public string Interest { get; set; } = "";
         public string Message { get; set; } = "";
+        public string Honeypot { get; set; } = "";
+        public long FormLoadTime { get; set; } = 0;
     }
 
     public interface IEmailService
